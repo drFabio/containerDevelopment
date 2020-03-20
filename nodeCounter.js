@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const counterFile = path.resolve(__dirname, './counter.txt')
+const counterFile = path.resolve(__dirname, './data/counter.txt')
 
 const COUNTER_LIMIT = 20
 const INTERVAL = 1000
@@ -11,8 +11,10 @@ if (fs.existsSync(counterFile)) {
   counterData = parseInt(fileData, 10)
 }
 
+const stopCounter = counterData + COUNTER_LIMIT
+
 const recursiveCounter = () => {
-  if (counterData === COUNTER_LIMIT) {
+  if (counterData === stopCounter) {
     process.exit(0)
   }
   console.log(counterData)
