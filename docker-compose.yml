@@ -1,6 +1,8 @@
 version: '3'
 services:
   runner:
-    build: .
+    image: node:13-alpine3.10
     volumes:
-      - ./ourLocalVolume:/app/ourApp/data
+      - ./src:/app
+    working_dir: /app
+    command: node ./nodeCounter.js
