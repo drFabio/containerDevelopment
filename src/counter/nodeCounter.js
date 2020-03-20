@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const counterFile = path.resolve(__dirname, './data/counter.txt')
+const counterFile = path.resolve('/data/counter.txt')
 
 const COUNTER_LIMIT = 20
 const INTERVAL = 1000
@@ -15,7 +15,7 @@ const stopCounter = counterData + COUNTER_LIMIT
 
 const recursiveCounter = () => {
   if (counterData === stopCounter) {
-    process.exit(0)
+    counterData = 0
   }
   console.log(counterData)
   counterData++

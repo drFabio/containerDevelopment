@@ -3,6 +3,14 @@ services:
   runner:
     image: node:13-alpine3.10
     volumes:
-      - ./src:/app
+      - ./src/counter:/app
+      - ./src/data:/data
     working_dir: /app
     command: node ./nodeCounter.js
+  web:
+    image: php:7.2-apache
+    volumes:
+      - ./src/web:/var/www/html/
+      - ./src/data:/data
+    ports:
+      - 8081:80
