@@ -1,0 +1,15 @@
+{
+  "name": "counter",
+  "version": "0.0.1",
+  "description": "A counter service",
+  "main": "src/nodeCounter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/nodeCounter.js"
+  },
+  "author": "fabio <fabiocostadev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^3.0.2"
+  }
+}

@@ -1,16 +1,26 @@
 version: '3'
 services:
   runner:
-    image: node:13-alpine3.10
+    build:
+      context: ./services/counter/
     volumes:
-      - ./src/counter:/app
-      - ./src/data:/data
+      - ./services/counter/src:/app/src
+      - ./services/data:/data
+      - ./services/counter/package.json:/app/package.json
     working_dir: /app
-    command: node ./nodeCounter.js
+    command: "npm run start"
+    depends_on:
+      - redis_database
+    environment:
+      - REDIS_URL=redis://redis_database
   web:
     image: php:7.2-apache
     volumes:
-      - ./src/web:/var/www/html/
-      - ./src/data:/data
+      - ./services/web:/var/www/html/
+      - ./services/data:/data
     ports:
       - 8081:80
+  redis_database:
+    image: redis:5-alpine
+    ports:
+      - 6379:6379
